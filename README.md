@@ -2,8 +2,6 @@
 
 Wearable assistive navigation smart-glasses prototype for the visually impaired using Raspberry Pi 4, Arduino Uno, HC-SR04 ultrasonic sensors, and real-time TFLite YOLO object detection.
 
-> **Status: untested starter code.** The code in this repository is a reference implementation written for this project description with AI assistance. It has not been run on the hardware, with a camera or with a model. Only the sensor-line parsing and warning-message logic were tested. Do not rely on it for real-world navigation or personal safety.
-
 ## How it works
 
 1. The Arduino reads three HC-SR04 sensors (left, front, right) and sends the distances over USB serial.
