@@ -36,22 +36,29 @@ The three-sensor layout and pin numbers are defaults chosen for this code. Chang
 
 1. Upload `arduino/ultrasonic_sensors/ultrasonic_sensors.ino` to the Uno with the Arduino IDE.
 2. On the Raspberry Pi (64-bit Raspberry Pi OS):
-   ```bash
+  ```bash
    sudo apt install espeak
    python3 -m venv venv
    source venv/bin/activate
    pip install -r raspberry_pi/requirements.txt
-Export a float32 model on a computer with Ultralytics installed, then copy the .tflite file to the Pi:
+
+   Export a float32 model on a computer with Ultralytics installed, then copy the .tflite file to the Pi:
 yolo export model=yolov8n.pt format=tflite
+
 Run:
+
 python raspberry_pi/main.py --model yolov8n_float32.tflite --labels labels.txt
-Option Default Meaning
---port /dev/ttyACM0 Arduino serial port
---camera 0 Camera index
---warn-cm 80 Distance that triggers an obstacle warning
---repeat-seconds 3.0 How often the same message repeats
+labels.txt holds one class name per line, in the model's class order. Without it, detections are announced as "object".
+
+| Option           | Default      | Meaning | 
+| --port           | /dev/ttyACM0 | Arduino serial port |
+| --camera         | 0            | Camera index |
+| --warn-cm        | 80           | Distance that triggers an obstacle warning | 
+| --repeat-seconds | 3.0          | How often the same message repeats |
+
 Project layout
-arduino/ultrasonic_sensors/   Arduino sketch
-raspberry_pi/main.py          Main loop and spoken messages
-raspberry_pi/detector.py      TFLite YOLO detection
-raspberry_pi/sensors.py       Serial reader
+
+arduino/ultrasonic_sensors/ -Arduino sketch
+raspberry_pi/main.py - Main loop and spoken messages
+raspberry_pi/detector.py - TFLite YOLO detection
+raspberry_pi/sensors.py - Serial reader
